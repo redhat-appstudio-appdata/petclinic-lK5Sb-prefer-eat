@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: component-sample-4
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: backend
+    app.kubernetes.io/part-of: application-sample-4
+  name: component-sample-4
+  namespace: maysun
+spec:
+  ports:
+  - port: 5566
+    targetPort: 5566
+  selector:
+    app.kubernetes.io/instance: component-sample-4
+status:
+  loadBalancer: {}

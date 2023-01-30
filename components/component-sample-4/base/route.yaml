@@ -1,0 +1,24 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: component-sample-4
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: backend
+    app.kubernetes.io/part-of: application-sample-4
+  name: component-sample-4
+  namespace: maysun
+spec:
+  host: route111222
+  port:
+    targetPort: 5566
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: component-sample-4
+    weight: 100
+status: {}

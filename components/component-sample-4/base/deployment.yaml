@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: component-sample-4
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: backend
+    app.kubernetes.io/part-of: application-sample-4
+  name: component-sample-4
+  namespace: maysun
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: component-sample-4
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: component-sample-4
+    spec:
+      containers:
+      - env:
+        - name: FOO
+          value: foo11
+        - name: BAR
+          value: bar11
+        image: quay.io/myimage2
+        imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 5566
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        name: container-image
+        ports:
+        - containerPort: 5566
+        readinessProbe:
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          tcpSocket:
+            port: 5566
+        resources:
+          limits:
+            cpu: "2"
+            memory: 500Mi
+            storage: 400Mi
+          requests:
+            cpu: 701m
+            memory: 401Mi
+            storage: 201Mi
+status: {}
